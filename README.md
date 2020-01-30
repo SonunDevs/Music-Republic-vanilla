@@ -1,6 +1,6 @@
 # Music-Republic
 
-##Instalation
+## Instalation
 
 Use the package manager [npm](https://nodejs.org/en/) to install dependecies.
 
