@@ -12,6 +12,7 @@
 /node_modules
 .package.swp
 /public
+package-lock.json
 # linters
 .eslintcache/
 .eslintrc
