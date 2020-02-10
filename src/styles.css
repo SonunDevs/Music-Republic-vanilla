@@ -225,8 +225,7 @@ h2 {
 	position: inherit;
 	pointer-events: none;
 }
-@-moz-document url-prefix() { 
-  /* //fix firefox being 1px off */
+@-moz-document url-prefix() { //fix firefox being 1px off
 	.slider .volume{
 		margin-top: 11px;
 	}
