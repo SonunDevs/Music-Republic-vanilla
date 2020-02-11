@@ -1,6 +1,5 @@
-/* Music player
-======================================*/
 import { playlist } from "./playlist";
+
 /* General Load / Variables
 ======================================*/
 var rot = 0;
@@ -98,6 +97,7 @@ function timeUpdate() {
   playPercent = timelineWidth * (music.currentTime / duration);
   playhead.style.width = playPercent + "px";
   timer.innerHTML = formatSecondsAsTime(music.currentTime.toString());
+  // console.log(music.duration); длина песни
 }
 function bufferUpdate() {
   bufferPercent = timelineWidth * (music.buffered.end(0) / duration);
