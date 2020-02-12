@@ -39,8 +39,10 @@ function load() {
   pauseButton.style.visibility = "hidden";
   song.innerHTML = playlist[currentSong]["song"];
   song.title = playlist[currentSong]["song"];
-  album.innerHTML = playlist[currentSong]["album"];
-  album.title = playlist[currentSong]["album"];
+  if (album) {
+    album.innerHTML = playlist[currentSong]["album"];
+    album.title = playlist[currentSong]["album"];
+  }
   artist.innerHTML = playlist[currentSong]["artist"];
   artist.title = playlist[currentSong]["artist"];
   artwork.setAttribute(
@@ -69,8 +71,10 @@ function reset() {
   currentSong = 0; // set to first song, to stay on last song: currentSong = playlist.length - 1;
   song.innerHTML = playlist[currentSong]["song"];
   song.title = playlist[currentSong]["song"];
-  album.innerHTML = playlist[currentSong]["album"];
-  album.title = playlist[currentSong]["album"];
+  if (album) {
+    album.innerHTML = playlist[currentSong]["album"];
+    album.title = playlist[currentSong]["album"];
+  }
   artist.innerHTML = playlist[currentSong]["artist"];
   artist.title = playlist[currentSong]["artist"];
   artwork.setAttribute(
@@ -209,8 +213,10 @@ next.onclick = function() {
   }
   song.innerHTML = playlist[currentSong]["song"];
   song.title = playlist[currentSong]["song"];
-  album.innerHTML = playlist[currentSong]["album"];
-  album.title = playlist[currentSong]["album"];
+  if (album) {
+    album.innerHTML = playlist[currentSong]["album"];
+    album.title = playlist[currentSong]["album"];
+  }
   artist.innerHTML = playlist[currentSong]["artist"];
   artist.title = playlist[currentSong]["artist"];
   artwork.setAttribute(
@@ -247,8 +253,10 @@ previous.onclick = function() {
   }
   song.innerHTML = playlist[currentSong]["song"];
   song.title = playlist[currentSong]["song"];
-  album.innerHTML = playlist[currentSong]["album"];
-  album.title = playlist[currentSong]["album"];
+  if (album) {
+    album.innerHTML = playlist[currentSong]["album"];
+    album.title = playlist[currentSong]["album"];
+  }
   artist.innerHTML = playlist[currentSong]["artist"];
   artist.title = playlist[currentSong]["artist"];
   artwork.setAttribute(

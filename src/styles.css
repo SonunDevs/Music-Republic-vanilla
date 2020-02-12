@@ -1,9 +1,295 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto:400,700&display=swap');
 
 body {
 	background-color: #1c1c1c;
+	margin: 0;
+	font-family: "Roboto", "Open Sans", sans-serif;
 }
 
+.player {
+	width: 100%;
+	background-color: #043353;
+	color: white;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+}
+
+.player ul {
+	margin: 0;
+	padding: 0;
+}
+
+.music_info {
+	display: flex;
+}
+
+.music_info h2 {
+	margin: 5px 0;
+	font-size: 18px;
+	width: 100%;
+	text-align: center;
+	font-weight: normal;
+}
+
+.button-items {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 10px 20px;
+}
+
+.slider_wrapper {
+	display: flex;
+	align-items: center;
+}
+
+.slider_wrapper p {
+	margin: 0 5px;
+	font-size: 18px;
+}
+
+#play {
+	padding: 0 3px;
+	width: 30px;
+	height: 30px;
+	enable-background: new 0 0 25 25;
+}
+
+#play g {
+	stroke: rgb(254, 254, 254);
+	stroke-width: 1;
+	stroke-miterlimit: 10;
+}
+
+#play g path {
+	fill: rgb(254, 254, 254);
+}
+
+#play:hover {
+	cursor: pointer;
+}
+
+#play:hover g {
+	stroke: rgb(239, 109, 188);
+	cursor: pointer;
+}
+
+#play:hover g path {
+	fill: rgb(239, 109, 188);
+	cursor: pointer;
+}
+
+.step-backward {
+	width: 18px;
+	height: 18px;
+	enable-background: new 0 0 25 25;
+	margin-bottom: 5px;
+}
+
+.step-backward g polygon,
+.step-foreward g polygon {
+	fill: rgb(254, 254, 254);
+}
+
+.step-foreward {
+	width: 18px;
+	height: 18px;
+	enable-background: new 0 0 25 25;
+	margin-bottom: 5px;
+}
+
+#pause {
+	enable-background: new 0 0 25 25;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	margin-left: -41px;
+	cursor: pointer;
+}
+
+#pause rect {
+	fill: rgb(255, 255, 255);
+}
+
+#pause:hover rect {
+	fill: rgb(239, 109, 188);
+}
+
+.expend {
+	padding: 0.5px;
+	cursor: pointer;
+}
+
+.expend svg:hover g polygon {
+	fill: rgb(239, 109, 188);
+	cursor: pointer;
+}
+
+#slider {
+	width: 320px;
+	height: 10px;
+	background: #FAF8F0;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+#slider #elapsed {
+	width: 0px;
+	height: 10px;
+	background: #18A4E0;
+	border-radius: 2px;
+	position: relative;
+	border-radius: 10px;
+}
+
+#slider #buffered {
+	width: 0px;
+	height: 10px;
+	background: rgba(24, 164, 224, 0.5);
+	border-radius: 2px;
+	margin-top: -10px;
+	border-radius: 10px;
+}
+
+.slider {
+	display: flex;
+}
+
+.slider i {
+	margin-right: 4px;
+}
+
+.volume {
+	display: none;
+}
+
+.arm,
+.artwork,
+#album {
+	display: none;
+}
+
+input[type=range] {
+	-webkit-appearance: none;
+	width: 100%;
+	margin: 4.5px 0;
+	border-radius: 8px;
+}
+
+input[type=range]:focus {
+	outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+	width: 100%;
+	height: 1px;
+	cursor: pointer;
+	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+	background: rgba(250, 248, 240, 0.78);
+	border-radius: 8px;
+	border: 0px solid #010101;
+}
+
+input[type=range]::-webkit-slider-thumb {
+	box-shadow: 1px 1px 6px #000000, 0px 0px 1px #0d0d0d;
+	border: 0px solid rgba(0, 0, 0, 0);
+	height: 10px;
+	width: 10px;
+	border-radius: 10px;
+	background: #18a4e0;
+	cursor: pointer;
+	-webkit-appearance: none;
+	margin-top: -4.5px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+	background: rgba(255, 255, 255, 0.78);
+}
+
+input[type=range]::-moz-range-track {
+	width: 100%;
+	height: 1px;
+	cursor: pointer;
+	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+	background: rgba(250, 248, 240, 0.78);
+	border-radius: 8px;
+	border: 0px solid #010101;
+}
+
+input[type=range]::-moz-range-thumb {
+	box-shadow: 1px 1px 6px #000000, 0px 0px 1px #0d0d0d;
+	border: 0px solid rgba(0, 0, 0, 0);
+	height: 10px;
+	width: 10px;
+	border-radius: 10px;
+	background: #18a4e0;
+	cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+	width: 100%;
+	height: 1px;
+	cursor: pointer;
+	background: transparent;
+	border-color: transparent;
+	color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+	background: rgba(0, 0, 0, 0.78);
+	border: 0px solid #010101;
+	border-radius: 16px;
+	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+}
+
+input[type=range]::-ms-fill-upper {
+	background: rgba(250, 248, 240, 0.78);
+	border: 0px solid #010101;
+	border-radius: 16px;
+	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+}
+
+input[type=range]::-ms-thumb {
+	box-shadow: 1px 1px 6px #000000, 0px 0px 1px #0d0d0d;
+	border: 0px solid rgba(0, 0, 0, 0);
+	height: 10px;
+	width: 10px;
+	border-radius: 10px;
+	background: #18a4e0;
+	cursor: pointer;
+	height: 1px;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+	background: rgba(250, 248, 240, 0.78);
+}
+
+input[type=range]:focus::-ms-fill-upper {
+	background: rgba(255, 255, 255, 0.78);
+}
+
+
+
+/* 
+
+.slider {
+	width: 80px;
+	display: inline-block;
+	margin: 4px 0 0 10px;
+}
+
+.slider .volume {
+	width: 69px;
+	height: 4px;
+	background: rgba(239, 109, 188, 0.3);
+	border-top-left-radius: 2px;
+	border-bottom-left-radius: 2px;
+	margin-top: 10px;
+	position: inherit;
+	pointer-events: none;
+}
 h1 {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 13pt;
@@ -31,7 +317,7 @@ h2 {
 .player {
 	height: 190px;
 	width: 430px;
-	background-color: rgb(30, 33, 37);
+	background-color: #043353;
 	position: absolute;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -117,30 +403,6 @@ h2 {
 .button-items {
 	margin-left: 180px;
 }
-
-#slider {
-	width: 182px;
-	height: 4px;
-	background: rgb(21, 21, 24);
-	border-radius: 2px;
-	overflow: hidden;
-}
-
-#slider #elapsed {
-	width: 0px;
-	height: 4px;
-	background: rgb(239, 109, 188);
-	border-radius: 2px;
-}
-
-#slider #buffered {
-	width: 0px;
-	height: 4px;
-	background: rgba(239, 109, 188, 0.3);
-	border-radius: 2px;
-	margin-top: -4px;
-}
-
 #timer {
 	color: rgb(99, 99, 103);
 	line-height: 0;
@@ -156,109 +418,6 @@ h2 {
 .controls svg:nth-child(2) {
 	margin-left: 5px;
 	margin-right: 5px;
-}
-
-#play {
-	padding: 0 3px;
-	width: 30px;
-	height: 30px;
-	x: 0px;
-	y: 0px;
-	enable-background: new 0 0 25 25;
-}
-
-#play g {
-	stroke: rgb(254, 254, 254);
-	stroke-width: 1;
-	stroke-miterlimit: 10;
-}
-
-#play g path {
-	fill: rgb(254, 254, 254);
-}
-
-#play:hover {
-	cursor: pointer;
-}
-
-#play:hover g {
-	stroke: rgb(239, 109, 188);
-	cursor: pointer;
-}
-
-#play:hover g path {
-	fill: rgb(239, 109, 188);
-	cursor: pointer;
-}
-
-.step-backward {
-	width: 18px;
-	height: 18px;
-	x: 0px;
-	y: 0px;
-	enable-background: new 0 0 25 25;
-	margin-bottom: 5px;
-}
-
-.step-backward g polygon,
-.step-foreward g polygon {
-	fill: rgb(254, 254, 254);
-}
-
-.step-foreward {
-	width: 18px;
-	height: 18px;
-	x: 0px;
-	y: 0px;
-	enable-background: new 0 0 25 25;
-	margin-bottom: 5px;
-}
-
-#pause {
-	x: 0px;
-	y: 0px;
-	enable-background: new 0 0 25 25;
-	width: 30px;
-	height: 30px;
-	position: absolute;
-	margin-left: -41px;
-	cursor: pointer;
-}
-
-#pause rect {
-	fill: rgb(255, 255, 255);
-}
-
-#pause:hover rect {
-	fill: rgb(239, 109, 188);
-}
-
-.expend {
-	padding: 0.5px;
-	cursor: pointer;
-}
-
-.expend svg:hover g polygon {
-	fill: rgb(239, 109, 188);
-	cursor: pointer;
-}
-
-.slider {
-	width: 80px;
-	position: absolute;
-	display: inline-block;
-	margin: 4px 0 0 10px;
-}
-
-.slider .volume {
-	width: 69px;
-	height: 4px;
-	background: rgba(239, 109, 188, 0.3);
-	border-top-left-radius: 2px;
-	border-bottom-left-radius: 2px;
-	margin-top: 10px;
-	position: inherit;
-	pointer-events: none;
 }
 
 @-moz-document url-prefix() {
@@ -343,4 +502,4 @@ input[type="range"]::-ms-thumb:hover,
 input[type="range"]::-ms-thumb:focus,
 input[type="range"]::-ms-thumb:active {
 	background-color: rgb(239, 109, 188);
-}
+} */

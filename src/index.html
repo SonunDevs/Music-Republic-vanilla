@@ -16,17 +16,9 @@
       <li class="artwork">
       </li>
       <li class="info">
-        <h1 id="artist">loading</h1>
-        <h4 id="album">loading</h4>
-        <h2 id="song">loading</h2>
         <div class="button-items">
           <audio id="music" preload="auto">
           </audio>
-          <div id="slider">
-            <div id="elapsed"></div>
-            <div id="buffered"></div>
-          </div>
-          <p id="timer">0:00</p>
           <div class="controls">
             <span class="expend">
               <svg id="previous" class="step-backward" viewBox="0 0 25 25" xml:space="preserve">
@@ -58,16 +50,35 @@
                 </g>
               </svg>
             </span>
-            <div class="slider">
-              <div class="volume"></div>
-              <input type="range" id="volume" min="0" max="1" step="0.01" value="1" />
+          </div>
+          <div class="music_box">
+            <div class="music_info">
+              <h2>
+                <span id="artist">loading artist...</span>
+                -
+                <span id="song">loading song...</span>
+              </h2>
             </div>
+            <div class="slider_wrapper">
+              <p id="timer">0:00</p>
+              <div id="slider">
+                <div id="elapsed"></div>
+                <div id="buffered"></div>
+              </div>
+              <p id="music-duration">0:00</p>
+            </div>
+          </div>
+          <div class="slider">
+            <div class="volume"></div>
+            <i class="fas fa-volume-up"></i>
+            <input type="range" id="volume" min="0" max="1" step="0.01" value="1" />
           </div>
         </div>
       </li>
     </ul>
   </div>
 
+  <script src="https://kit.fontawesome.com/0d26457fd0.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
