@@ -106,7 +106,7 @@ body {
 	width: 30px;
 	height: 30px;
 	position: absolute;
-	margin-left: -41px;
+	margin-left: -35px;
 	cursor: pointer;
 }
 
@@ -160,10 +160,6 @@ body {
 
 .slider i {
 	margin-right: 4px;
-}
-
-.volume {
-	display: none;
 }
 
 .arm,
