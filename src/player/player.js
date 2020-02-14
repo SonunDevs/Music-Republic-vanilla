@@ -1,7 +1,10 @@
 import { playlist } from "./playlist";
+import "../math/math";
 
 /* General Load / Variables
 ======================================*/
+let playState = false;
+let volume_value = 1;
 var rot = 0;
 var duration;
 var playPercent;
@@ -35,6 +38,47 @@ load();
 
 /* Functions
 ======================================*/
+
+// Функция отвечающий за событии нажатие клавиатуры
+document.documentElement.addEventListener("keydown", event => {
+  // плей и пауза при нажатие клавиатуры "Space"
+  if (event.code == "Space") {
+    playState = !playState;
+    if (playState) {
+      music.play();
+    } else {
+      music.pause();
+    }
+  }
+
+  // увеличение и уменьшение громкости
+  if (event.code == "ArrowDown" && volume_value > 0) {
+    // Math.round10 округление до ближайшего значения
+    volume_value = Math.round10(volume_value - 0.1, -1);
+    changeVolume(volume_value);
+  } else if (event.code == "ArrowUp" && volume_value < 1) {
+    volume_value = Math.round10(volume_value + 0.1, -1);
+    changeVolume(volume_value);
+  }
+
+  if (event.code == "ArrowLeft") {
+    // Следующий трек
+    nextFunc();
+  } else if (event.code == "ArrowRight") {
+    // Предыдущий трек
+    previousFunc();
+  }
+
+  // console.log(event, volume_value);
+});
+
+// функция увеличение и уменьшение громкости
+function changeVolume(volumeValue) {
+  music.volume = volumeValue;
+  volume.value = volumeValue;
+  visablevolume.style.width = (80 - 11) * volumeValue + "px";
+}
+
 function load() {
   pauseButton.style.visibility = "hidden";
   song.innerHTML = playlist[currentSong]["song"];
@@ -141,6 +185,7 @@ function _next() {
     fireEvent(next, "click");
   }
 }
+
 playButton.onclick = function() {
   music.play();
 };
@@ -191,7 +236,11 @@ music.addEventListener(
   },
   false
 );
-next.onclick = function() {
+
+next.addEventListener("click", nextFunc);
+previous.addEventListener("click", previousFunc);
+
+function nextFunc() {
   arm.setAttribute("style", "transition: transform 800ms;");
   arm.style.transform = "rotate(-45deg)";
   clearTimeout(rotate_timer);
@@ -230,8 +279,9 @@ next.onclick = function() {
   music.load();
   duration = music.duration;
   music.play();
-};
-previous.onclick = function() {
+}
+
+function previousFunc() {
   arm.setAttribute("style", "transition: transform 800ms;");
   arm.style.transform = "rotate(-45deg)";
   clearTimeout(rotate_timer);
@@ -270,11 +320,12 @@ previous.onclick = function() {
   music.load();
   duration = music.duration;
   music.play();
-};
+}
+
 volume.oninput = function() {
-  music.volume = volume.value;
-  visablevolume.style.width = (80 - 11) * volume.value + "px";
+  changeVolume(volume.value);
 };
+
 music.addEventListener(
   "canplay",
   function() {
