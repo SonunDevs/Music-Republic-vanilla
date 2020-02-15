@@ -30,6 +30,7 @@ var bufferhead = document.getElementById("buffered");
 var artwork = document.getElementsByClassName("artwork")[0];
 var timelineWidth = timeline.offsetWidth - playhead.offsetWidth;
 var visablevolume = document.getElementsByClassName("volume")[0];
+let musicDuration = document.getElementById("music_duration");
 
 music.addEventListener("ended", _next, false);
 music.addEventListener("timeupdate", timeUpdate, false);
@@ -145,6 +146,7 @@ function timeUpdate() {
   playPercent = timelineWidth * (music.currentTime / duration);
   playhead.style.width = playPercent + "px";
   timer.innerHTML = formatSecondsAsTime(music.currentTime.toString());
+  musicDuration.innerHTML = formatSecondsAsTime(music.duration.toString());
   // console.log(music.duration); длина песни
 }
 function bufferUpdate() {
@@ -278,6 +280,7 @@ function nextFunc() {
   );
   music.load();
   duration = music.duration;
+  musicDuration.innerHTML = formatSecondsAsTime(music.duration.toString());
   music.play();
 }
 
@@ -319,6 +322,7 @@ function previousFunc() {
   );
   music.load();
   duration = music.duration;
+  musicDuration.innerHTML = formatSecondsAsTime(music.duration.toString());
   music.play();
 }
 
