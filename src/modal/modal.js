@@ -10,14 +10,22 @@ let modalWinsSignup = document.querySelector(".modal_win_signup");
 btnLogin.addEventListener("click", function() {
   showingBackdrop();
   showingModals("signup");
+
+  console.log("signup clicked");
 });
 
 btnSignup.addEventListener("click", function() {
   showingBackdrop();
   showingModals("login");
+
+  console.log("login clicked");
 });
 
-backdrop.addEventListener("mousedown", showingBackdrop);
+backdrop.addEventListener("click", event => {
+  if (event.target.className == "scroll-win") {
+    showingBackdrop();
+  }
+});
 
 function showingBackdrop() {
   backdropState = !backdropState;
@@ -27,6 +35,8 @@ function showingBackdrop() {
   } else {
     backdrop.className = "backdrop";
   }
+
+  console.log("backdop clicked");
 }
 
 function showingModals(modalWindow) {

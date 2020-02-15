@@ -15,6 +15,7 @@
   background-color: #FAF8F0;
   border-radius: 25px;
   color: #404040;
+  z-index: 99;
 }
 
 .modal_win_logo {
