@@ -10,15 +10,11 @@ let modalWinsSignup = document.querySelector(".modal_win_signup");
 btnLogin.addEventListener("click", function() {
   showingBackdrop();
   showingModals("signup");
-
-  console.log("signup clicked");
 });
 
 btnSignup.addEventListener("click", function() {
   showingBackdrop();
   showingModals("login");
-
-  console.log("login clicked");
 });
 
 backdrop.addEventListener("click", event => {
@@ -35,8 +31,6 @@ function showingBackdrop() {
   } else {
     backdrop.className = "backdrop";
   }
-
-  console.log("backdop clicked");
 }
 
 function showingModals(modalWindow) {
