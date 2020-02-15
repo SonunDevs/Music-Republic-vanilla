@@ -9,12 +9,12 @@ let modalWinsSignup = document.querySelector(".modal_win_signup");
 
 btnLogin.addEventListener("click", function() {
   showingBackdrop();
-  showingModals("signup");
+  showingModals("login");
 });
 
 btnSignup.addEventListener("click", function() {
   showingBackdrop();
-  showingModals("login");
+  showingModals("signup");
 });
 
 backdrop.addEventListener("click", event => {
