@@ -1,10 +1,65 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto:400,700&display=swap');
 @import url("./inputRange.css");
+@import url("./nav.css");
+@import url("./modal.css");
 
 body {
 	background-color: #1c1c1c;
 	margin: 0;
 	font-family: "Roboto", "Open Sans", sans-serif;
+}
+
+img {
+	width: 100%;
+}
+
+a.link {
+	color: #18A4E0;
+}
+
+a.link:hover {
+	color: #043353;
+}
+
+button {
+	cursor: pointer;
+}
+
+.btn {
+	padding: 8px 16px;
+	border: 2px solid #18A4E0;
+	border-radius: 10px;
+	background-color: transparent;
+	color: white;
+	font-weight: bold;
+	font-size: 15px;
+	outline: none;
+}
+
+button.btn_solid {
+	background-color: #18A4E0;
+}
+
+.btn:hover {
+	background-color: #FAF8F0;
+	border-color: #FAF8F0 !important;
+	color: #043353;
+}
+
+.backdrop {
+	display: none;
+	width: 100vw;
+	height: 100%;
+	min-height: 800px;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 2;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.backdrop.active {
+	display: block;
 }
 
 .logo {

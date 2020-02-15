@@ -1,0 +1,70 @@
+.scroll-win {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.modal_win {
+  display: none;
+  padding: 40px 30px 30px;
+  align-items: center;
+  position: relative;
+  background-color: #FAF8F0;
+  border-radius: 25px;
+  color: #404040;
+  z-index: 99;
+}
+
+.modal_win_logo {
+  width: 94px;
+  height: 94px;
+  border: 3px solid #FAF8F0;
+  border-radius: 100%;
+  overflow: hidden;
+  position: absolute;
+  left: calc(50% - 50px);
+  top: -50px;
+}
+
+form {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+form input {
+  width: 100%;
+  max-width: 400px;
+  height: 50px;
+  box-sizing: border-box;
+  padding: 0 15px;
+  margin: 8px 0;
+  border: 2px solid #979797;
+  background-color: #FAF8F0;
+  border-radius: 10px;
+  font-size: 19px;
+}
+
+form button.btn {
+  height: 50px;
+  text-transform: uppercase;
+  margin: 8px 0;
+}
+
+.reg_link {
+  color: #404040;
+  text-decoration: none;
+  font-size: 1.4em;
+  margin: 0 10px;
+}
+
+.reg_link:hover {
+  color: #18A4E0;
+}
+
+.modal_win.active {
+  display: block;
+}
