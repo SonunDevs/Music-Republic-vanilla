@@ -1,4 +1,4 @@
-import { playlist } from "./playlist";
+import { playlist } from "./playlistdata";
 import "../math/math";
 
 /* General Load / Variables

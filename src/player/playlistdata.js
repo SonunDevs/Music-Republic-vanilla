@@ -28,8 +28,7 @@ export var playlist = [
     song: "Night Witches",
     album: "Heroes",
     artist: "Sabaton",
-    artwork:
-      "https://avatars.yandex.net/get-music-content/33216/f0f4e535.a.1971440-1/m1000x1000",
+    artwork: "https://i.ebayimg.com/images/g/9TAAAOSw~OVWxhUH/s-l400.jpg",
     mp3: "https://download.mp3-here.icu/e/Sabaton-Night-Witches.mp3"
   }
 ];
