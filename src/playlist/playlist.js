@@ -1,17 +1,16 @@
 import { playlist } from "../player/playlistdata";
 
 let list = document.querySelector(".playlist");
-let div = document.createElement("div");
-let img = document.createElement("img");
-let li = document.createElement("li");
-let h4 = document.createElement("h4");
-let h5 = document.createElement("h5");
 
 window.addEventListener("load", () => createPlaylist(playlist));
 
 function createPlaylist(data) {
   data.forEach(element => {
-    console.log(element.song);
+    let li = document.createElement("li");
+    let div = document.createElement("div");
+    let img = document.createElement("img");
+    let h4 = document.createElement("h4");
+    let h5 = document.createElement("h5");
 
     img.alt = element.song;
     img.src = element.artwork;
