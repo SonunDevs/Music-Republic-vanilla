@@ -16,7 +16,7 @@ function createPlaylist(data) {
     img.src = element.artwork;
     h4.innerHTML = element.song;
     h5.innerHTML = element.artist;
-    div.className = "artwork";
+    div.className = "list_artwork";
     h4.className = "song_name";
     h5.className = "artist_name";
     li.setAttribute("data-mp3", element.mp3);
