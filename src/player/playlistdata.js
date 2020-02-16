@@ -3,8 +3,7 @@ export var playlist = [
     song: "Forever",
     album: "Divinely Uninspired To A Hellish Extent",
     artist: "Lewis Capaldi",
-    artwork:
-      "https://cdn.hmv.com/r/w-3280/getattachment/18c674a8-c155-4722-adba-6676988f292b/mus000607312-1.jpg",
+    artwork: "https://m.media-amazon.com/images/I/71aPcfQ5KtL._SS500_.jpg",
     mp3: "https://download.mp3-here.icu/c/Lewis-Capaldi-Forever.mp3"
   },
   {
