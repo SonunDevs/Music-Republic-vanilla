@@ -18,7 +18,7 @@ function createPlaylist(data) {
     img.src = element.artwork;
     h4.innerHTML = element.song;
     h5.innerHTML = element.artist;
-    div2.className = "back_drop";
+    div2.className = "backdrop";
     i.className = "far fa-play-circle";
     div.className = "list_artwork";
     h4.className = "song_name";

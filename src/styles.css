@@ -3,6 +3,7 @@
 @import url("./nav.css");
 @import url("./modal/modal.css");
 @import url("./list-style.css");
+
 body {
   background-color: #1c1c1c;
   margin: 0;
