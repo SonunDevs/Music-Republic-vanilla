@@ -12,20 +12,20 @@ function createPlaylist(data) {
     let h4 = document.createElement("h4");
     let h5 = document.createElement("h5");
     let i = document.createElement("i");
-    let div2 = document.createElement("div");
+    let listBackdrop = document.createElement("div");
 
     img.alt = element.song;
     img.src = element.artwork;
     h4.innerHTML = element.song;
     h5.innerHTML = element.artist;
-    div2.className = "list_backdrop";
+    listBackdrop.className = "list_backdrop";
     i.className = "far fa-play-circle";
     div.className = "list_artwork";
     h4.className = "song_name";
     h5.className = "artist_name";
     li.setAttribute("data-mp3", element.mp3);
-    div2.append(i);
-    div.append(div2, img);
+    listBackdrop.append(i);
+    div.append(listBackdrop, img);
     li.append(div);
     li.append(h4);
     li.append(h5);
