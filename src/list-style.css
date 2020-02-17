@@ -61,4 +61,5 @@
 header h2 {
   text-transform: uppercase;
   color: #18a4e0;
+  font-weight: unset;
 }
