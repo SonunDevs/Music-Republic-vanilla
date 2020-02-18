@@ -1,0 +1,183 @@
+.player {
+  width: 100%;
+  background-color: #043353;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.player ul {
+  margin: 0;
+  padding: 0;
+}
+
+.music_info {
+  display: flex;
+}
+
+.music_info h2 {
+  margin: 5px 0;
+  font-size: 18px;
+  width: 100%;
+  text-align: center;
+  font-weight: normal;
+}
+
+.button-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 10px 20px;
+}
+
+.slider_wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.slider_wrapper p {
+  margin: 0 5px;
+  font-size: 18px;
+}
+
+#play {
+  padding: 0 3px;
+  width: 30px;
+  height: 30px;
+  enable-background: new 0 0 25 25;
+}
+
+#play g {
+  stroke: rgb(254, 254, 254);
+  stroke-width: 1;
+  stroke-miterlimit: 10;
+}
+
+#play g path {
+  fill: rgb(254, 254, 254);
+}
+
+#play:hover {
+  cursor: pointer;
+}
+
+#play:hover g {
+  stroke: rgb(239, 109, 188);
+  cursor: pointer;
+}
+
+#play:hover g path {
+  fill: rgb(239, 109, 188);
+  cursor: pointer;
+}
+
+.step-backward {
+  width: 18px;
+  height: 18px;
+  enable-background: new 0 0 25 25;
+  margin-bottom: 5px;
+}
+
+.step-backward g polygon,
+.step-foreward g polygon {
+  fill: rgb(254, 254, 254);
+}
+
+.step-foreward {
+  width: 18px;
+  height: 18px;
+  enable-background: new 0 0 25 25;
+  margin-bottom: 5px;
+}
+
+#pause {
+  enable-background: new 0 0 25 25;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  margin-left: -35px;
+  cursor: pointer;
+}
+
+#pause rect {
+  fill: rgb(255, 255, 255);
+}
+
+#pause:hover rect {
+  fill: rgb(239, 109, 188);
+}
+
+.expend {
+  padding: 0.5px;
+  cursor: pointer;
+}
+
+.expend svg:hover g polygon {
+  fill: rgb(239, 109, 188);
+  cursor: pointer;
+}
+
+#slider {
+  width: 320px;
+  height: 10px;
+  background: #faf8f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#slider #elapsed {
+  width: 0px;
+  height: 10px;
+  background: #18a4e0;
+  border-radius: 2px;
+  position: relative;
+  border-radius: 10px;
+}
+
+#slider #buffered {
+  width: 0px;
+  height: 10px;
+  background: rgba(24, 164, 224, 0.5);
+  border-radius: 2px;
+  margin-top: -10px;
+  border-radius: 10px;
+}
+
+.slider {
+  display: flex;
+}
+
+.slider i {
+  margin-right: 4px;
+}
+
+.arm,
+.artwork,
+#album {
+  display: none;
+}
+
+@media (max-width: 690px) {
+  .button-items {
+    position: relative;
+  }
+
+  .music_box {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  #slider {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .slider_wrapper {
+    justify-content: center;
+  }
+}

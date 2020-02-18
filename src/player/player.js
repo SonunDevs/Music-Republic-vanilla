@@ -1,4 +1,5 @@
 import { playlist } from "./playlistdata";
+import "../playlist/playlist";
 import "../math/math";
 
 /* General Load / Variables
@@ -326,6 +327,31 @@ function previousFunc() {
   music.play();
 }
 
+function setTrack(index) {
+  playhead.style.width = "0px";
+  bufferhead.style.width = "0px";
+  timer.innerHTML = "0:00";
+  music.innerHTML = "";
+  // "currentSong" - индекс песни
+  currentSong = index;
+  music.innerHTML =
+    '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
+
+  song.innerHTML = playlist[currentSong]["song"];
+  song.title = playlist[currentSong]["song"];
+  if (album) {
+    album.innerHTML = playlist[currentSong]["album"];
+    album.title = playlist[currentSong]["album"];
+  }
+  artist.innerHTML = playlist[currentSong]["artist"];
+  artist.title = playlist[currentSong]["artist"];
+
+  music.load();
+  duration = music.duration;
+  musicDuration.innerHTML = formatSecondsAsTime(music.duration.toString());
+  music.play();
+}
+
 volume.oninput = function() {
   changeVolume(volume.value);
 };
@@ -337,3 +363,21 @@ music.addEventListener(
   },
   false
 );
+
+window.addEventListener("click", event => {
+  if (event.target.className == "list_backdrop") {
+    for (let i = 0; i < playlist.length; i++) {
+      const element = playlist[i];
+      if (event.target.getAttribute("data-mp3") == element.mp3) {
+        setTrack(i);
+      }
+    }
+  } else if (event.target.className == "far fa-play-circle") {
+    for (let i = 0; i < playlist.length; i++) {
+      const element = playlist[i];
+      if (event.target.parentNode.getAttribute("data-mp3") == element.mp3) {
+        setTrack(i);
+      }
+    }
+  }
+});

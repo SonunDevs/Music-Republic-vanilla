@@ -23,7 +23,7 @@ function createPlaylist(data) {
     div.className = "list_artwork";
     h4.className = "song_name";
     h5.className = "artist_name";
-    li.setAttribute("data-mp3", element.mp3);
+    listBackdrop.setAttribute("data-mp3", element.mp3);
     listBackdrop.append(i);
     div.append(listBackdrop, img);
     li.append(div);
@@ -32,13 +32,4 @@ function createPlaylist(data) {
 
     list.append(li);
   });
-}
-
-{
-  /* <li>
-<div class="artwork"></div>
-<h4 class="song_name"></h4>
-<h5 class="artist_name"></h5>
-<p class="music_duration"></p>
-</li> */
 }
