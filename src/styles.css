@@ -5,233 +5,233 @@
 @import url("./list-style.css");
 
 body {
-  background-color: #1c1c1c;
-  margin: 0;
-  font-family: "Roboto", "Open Sans", sans-serif;
+	background-color: #1c1c1c;
+	margin: 0;
+	font-family: "Roboto", "Open Sans", sans-serif;
 }
 
 img {
-  width: 100%;
+	width: 100%;
 }
 
 a.link {
-  color: #18a4e0;
+	color: #18a4e0;
 }
 
 a.link:hover {
-  color: #043353;
+	color: #043353;
 }
 
 button {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 main {
-  padding: 100px;
+	padding: 100px;
 }
 
 .btn {
-  padding: 8px 16px;
-  border: 2px solid #18a4e0;
-  border-radius: 10px;
-  background-color: transparent;
-  color: white;
-  font-weight: bold;
-  font-size: 15px;
-  outline: none;
+	padding: 8px 16px;
+	border: 2px solid #18a4e0;
+	border-radius: 10px;
+	background-color: transparent;
+	color: white;
+	font-weight: bold;
+	font-size: 15px;
+	outline: none;
 }
 
 button.btn_solid {
-  background-color: #18a4e0;
+	background-color: #18a4e0;
 }
 
 .btn:hover {
-  background-color: #faf8f0;
-  border-color: #faf8f0 !important;
-  color: #043353;
+	background-color: #faf8f0;
+	border-color: #faf8f0 !important;
+	color: #043353;
 }
 
 .backdrop {
-  display: none;
-  width: 100vw;
-  height: 100%;
-  min-height: 800px;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 2;
-  background-color: rgba(0, 0, 0, 0.5);
+	display: none;
+	width: 100vw;
+	height: 100%;
+	min-height: 800px;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 2;
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
 .backdrop.active {
-  display: block;
+	display: block;
 }
 
 .logo {
-  background-size: cover;
-  height: 150px;
-  width: 150px;
+	background-size: cover;
+	height: 150px;
+	width: 150px;
 }
 
 .player {
-  width: 100%;
-  background-color: #043353;
-  color: white;
-  position: fixed;
-  bottom: 0;
-  left: 0;
+	width: 100%;
+	background-color: #043353;
+	color: white;
+	position: fixed;
+	bottom: 0;
+	left: 0;
 }
 
 .player ul {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 .music_info {
-  display: flex;
+	display: flex;
 }
 
 .music_info h2 {
-  margin: 5px 0;
-  font-size: 18px;
-  width: 100%;
-  text-align: center;
-  font-weight: normal;
+	margin: 5px 0;
+	font-size: 18px;
+	width: 100%;
+	text-align: center;
+	font-weight: normal;
 }
 
 .button-items {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-sizing: border-box;
-  padding: 10px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 10px 20px;
 }
 
 .slider_wrapper {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .slider_wrapper p {
-  margin: 0 5px;
-  font-size: 18px;
+	margin: 0 5px;
+	font-size: 18px;
 }
 
 #play {
-  padding: 0 3px;
-  width: 30px;
-  height: 30px;
-  enable-background: new 0 0 25 25;
+	padding: 0 3px;
+	width: 30px;
+	height: 30px;
+	enable-background: new 0 0 25 25;
 }
 
 #play g {
-  stroke: rgb(254, 254, 254);
-  stroke-width: 1;
-  stroke-miterlimit: 10;
+	stroke: rgb(254, 254, 254);
+	stroke-width: 1;
+	stroke-miterlimit: 10;
 }
 
 #play g path {
-  fill: rgb(254, 254, 254);
+	fill: rgb(254, 254, 254);
 }
 
 #play:hover {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 #play:hover g {
-  stroke: rgb(239, 109, 188);
-  cursor: pointer;
+	stroke: rgb(239, 109, 188);
+	cursor: pointer;
 }
 
 #play:hover g path {
-  fill: rgb(239, 109, 188);
-  cursor: pointer;
+	fill: rgb(239, 109, 188);
+	cursor: pointer;
 }
 
 .step-backward {
-  width: 18px;
-  height: 18px;
-  enable-background: new 0 0 25 25;
-  margin-bottom: 5px;
+	width: 18px;
+	height: 18px;
+	enable-background: new 0 0 25 25;
+	margin-bottom: 5px;
 }
 
 .step-backward g polygon,
 .step-foreward g polygon {
-  fill: rgb(254, 254, 254);
+	fill: rgb(254, 254, 254);
 }
 
 .step-foreward {
-  width: 18px;
-  height: 18px;
-  enable-background: new 0 0 25 25;
-  margin-bottom: 5px;
+	width: 18px;
+	height: 18px;
+	enable-background: new 0 0 25 25;
+	margin-bottom: 5px;
 }
 
 #pause {
-  enable-background: new 0 0 25 25;
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  margin-left: -35px;
-  cursor: pointer;
+	enable-background: new 0 0 25 25;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	margin-left: -35px;
+	cursor: pointer;
 }
 
 #pause rect {
-  fill: rgb(255, 255, 255);
+	fill: rgb(255, 255, 255);
 }
 
 #pause:hover rect {
-  fill: rgb(239, 109, 188);
+	fill: rgb(239, 109, 188);
 }
 
 .expend {
-  padding: 0.5px;
-  cursor: pointer;
+	padding: 0.5px;
+	cursor: pointer;
 }
 
 .expend svg:hover g polygon {
-  fill: rgb(239, 109, 188);
-  cursor: pointer;
+	fill: rgb(239, 109, 188);
+	cursor: pointer;
 }
 
 #slider {
-  width: 320px;
-  height: 10px;
-  background: #faf8f0;
-  border-radius: 10px;
-  overflow: hidden;
+	width: 320px;
+	height: 10px;
+	background: #faf8f0;
+	border-radius: 10px;
+	overflow: hidden;
 }
 
 #slider #elapsed {
-  width: 0px;
-  height: 10px;
-  background: #18a4e0;
-  border-radius: 2px;
-  position: relative;
-  border-radius: 10px;
+	width: 0px;
+	height: 10px;
+	background: #18a4e0;
+	border-radius: 2px;
+	position: relative;
+	border-radius: 10px;
 }
 
 #slider #buffered {
-  width: 0px;
-  height: 10px;
-  background: rgba(24, 164, 224, 0.5);
-  border-radius: 2px;
-  margin-top: -10px;
-  border-radius: 10px;
+	width: 0px;
+	height: 10px;
+	background: rgba(24, 164, 224, 0.5);
+	border-radius: 2px;
+	margin-top: -10px;
+	border-radius: 10px;
 }
 
 .slider {
-  display: flex;
+	display: flex;
 }
 
 .slider i {
-  margin-right: 4px;
+	margin-right: 4px;
 }
 
 .arm,
 .artwork,
 #album {
-  display: none;
+	display: none;
 }
 
 /* 
