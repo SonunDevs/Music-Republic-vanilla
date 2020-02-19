@@ -29,5 +29,13 @@ export var playlist = [
     artist: "Sabaton",
     artwork: "https://i.ebayimg.com/images/g/9TAAAOSw~OVWxhUH/s-l400.jpg",
     mp3: "https://download.mp3-here.icu/e/Sabaton-Night-Witches.mp3"
+  },
+  {
+    song: "The day",
+    album: "My Hero Academy",
+    artist: "Porno Graffitti",
+    artwork: "https://st.cdjapan.co.jp/pictures/l/05/37/SECL-1924.jpg",
+    mp3:
+      "https://mn1.sunproxy.net/file/Q1NCTHQ1T3hiY1RiS29wbmpUVjdxbHoveEdzYm82aitvcEk0NWM4ZVdXSDE0eFdmaEY3VG9sbkFXRDdpTm8zU0VUeUZrdnZnVGxoNkFCaTRVd29zbW9iamI3dkxITGQzNEtFcklyb3MyVVE9/Porno_Graffitti_-_The_Day_(mp3.mn).mp3"
   }
 ];
