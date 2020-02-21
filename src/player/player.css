@@ -262,6 +262,13 @@
   align-items: center;
 }
 
+.player_full .song_artwork {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  background-size: contain;
+}
+
 @media (max-width: 690px) {
   .button-items {
     position: relative;
