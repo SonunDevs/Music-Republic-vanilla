@@ -102,14 +102,14 @@ function load() {
   music.load();
 }
 function reset() {
-  rotate_reset = setInterval(function() {
-    Rotate();
-    if (rot == 0) {
-      clearTimeout(rotate_reset);
-    }
-  }, 1);
+  // rotate_reset = setInterval(function() {
+  //   Rotate();
+  //   if (rot == 0) {
+  //     clearTimeout(rotate_reset);
+  //   }
+  // }, 1);
+  // armrot = -45;
   fireEvent(pauseButton, "click");
-  armrot = -45;
   playhead.style.width = "0px";
   bufferhead.style.width = "0px";
   timer.innerHTML = "0:00";
