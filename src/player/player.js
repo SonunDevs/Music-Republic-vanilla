@@ -91,12 +91,12 @@ function load() {
   }
   artist.innerHTML = playlist[currentSong]["artist"];
   artist.title = playlist[currentSong]["artist"];
-  artwork.setAttribute(
-    "style",
-    "background:url(https://i.imgur.com/3idGgyU.png), url('" +
-      playlist[currentSong]["artwork"] +
-      "') center no-repeat;"
-  );
+  // artwork.setAttribute(
+  //   "style",
+  //   "background:url(https://i.imgur.com/3idGgyU.png), url('" +
+  //     playlist[currentSong]["artwork"] +
+  //     "') center no-repeat;"
+  // );
   music.innerHTML =
     '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
   music.load();
@@ -123,12 +123,12 @@ function reset() {
   }
   artist.innerHTML = playlist[currentSong]["artist"];
   artist.title = playlist[currentSong]["artist"];
-  artwork.setAttribute(
-    "style",
-    "background:url(https://i.imgur.com/3idGgyU.png), url('" +
-      playlist[currentSong]["artwork"] +
-      "') center no-repeat;"
-  );
+  // artwork.setAttribute(
+  //   "style",
+  //   "background:url(https://i.imgur.com/3idGgyU.png), url('" +
+  //     playlist[currentSong]["artwork"] +
+  //     "') center no-repeat;"
+  // );
   music.innerHTML =
     '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
   music.load();
@@ -150,28 +150,30 @@ function timeUpdate() {
   musicDuration.innerHTML = formatSecondsAsTime(music.duration.toString());
   // console.log(music.duration); длина песни
 }
+
 function bufferUpdate() {
   bufferPercent = timelineWidth * (music.buffered.end(0) / duration);
   bufferhead.style.width = bufferPercent + "px";
 }
-function Rotate() {
-  if (rot == 361) {
-    artwork.style.transform = "rotate(0deg)";
-    rot = 0;
-  } else {
-    artwork.style.transform = "rotate(" + rot + "deg)";
-    rot++;
-  }
-}
-function RotateArm() {
-  if (armrot > -12) {
-    arm.style.transform = "rotate(-38deg)";
-    armrot = -45;
-  } else {
-    arm.style.transform = "rotate(" + armrot + "deg)";
-    armrot = armrot + 26 / duration;
-  }
-}
+
+// function Rotate() {
+//   if (rot == 361) {
+//     artwork.style.transform = "rotate(0deg)";
+//     rot = 0;
+//   } else {
+//     artwork.style.transform = "rotate(" + rot + "deg)";
+//     rot++;
+//   }
+// }
+// function RotateArm() {
+//   if (armrot > -12) {
+//     arm.style.transform = "rotate(-38deg)";
+//     armrot = -45;
+//   } else {
+//     arm.style.transform = "rotate(" + armrot + "deg)";
+//     armrot = armrot + 26 / duration;
+//   }
+// }
 function fireEvent(el, etype) {
   if (el.fireEvent) {
     el.fireEvent("on" + etype);
@@ -195,43 +197,45 @@ playButton.onclick = function() {
 pauseButton.onclick = function() {
   music.pause();
 };
+
 music.addEventListener(
   "play",
   function() {
     playButton.style.visibility = "hidden";
     pause.style.visibility = "visible";
-    rotate_timer = setInterval(function() {
-      if (!music.paused && !music.ended && 0 < music.currentTime) {
-        Rotate();
-      }
-    }, 10);
-    if (armrot != -45) {
-      arm.setAttribute("style", "transition: transform 800ms;");
-      arm.style.transform = "rotate(" + armrot + "deg)";
-    }
-    arm_rotate_timer = setInterval(function() {
-      if (!music.paused && !music.ended && 0 < music.currentTime) {
-        if (armrot == -45) {
-          arm.setAttribute("style", "transition: transform 800ms;");
-          arm.style.transform = "rotate(-38deg)";
-          armrot = -38;
-        }
-        if (arm.style.transition != "") {
-          setTimeout(function() {
-            arm.style.transition = "";
-          }, 1000);
-        }
-        RotateArm();
-      }
-    }, 1000);
+    // rotate_timer = setInterval(function() {
+    //   if (!music.paused && !music.ended && 0 < music.currentTime) {
+    //     Rotate();
+    //   }
+    // }, 10);
+    // if (armrot != -45) {
+    //   arm.setAttribute("style", "transition: transform 800ms;");
+    //   arm.style.transform = "rotate(" + armrot + "deg)";
+    // }
+    // arm_rotate_timer = setInterval(function() {
+    //   if (!music.paused && !music.ended && 0 < music.currentTime) {
+    //     if (armrot == -45) {
+    //       arm.setAttribute("style", "transition: transform 800ms;");
+    //       arm.style.transform = "rotate(-38deg)";
+    //       armrot = -38;
+    //     }
+    //     if (arm.style.transition != "") {
+    //       setTimeout(function() {
+    //         arm.style.transition = "";
+    //       }, 1000);
+    //     }
+    //     // RotateArm();
+    //   }
+    // }, 1000);
   },
   false
 );
+
 music.addEventListener(
   "pause",
   function() {
-    arm.setAttribute("style", "transition: transform 800ms;");
-    arm.style.transform = "rotate(-45deg)";
+    // arm.setAttribute("style", "transition: transform 800ms;");
+    // arm.style.transform = "rotate(-45deg)";
     playButton.style.visibility = "visible";
     pause.style.visibility = "hidden";
     clearTimeout(rotate_timer);
@@ -244,16 +248,16 @@ next.addEventListener("click", nextFunc);
 previous.addEventListener("click", previousFunc);
 
 function nextFunc() {
-  arm.setAttribute("style", "transition: transform 800ms;");
-  arm.style.transform = "rotate(-45deg)";
+  // arm.setAttribute("style", "transition: transform 800ms;");
+  // arm.style.transform = "rotate(-45deg)";
+  // arm.style.transform = "rotate(-45deg)";
+  // armrot = -45;
   clearTimeout(rotate_timer);
   clearTimeout(arm_rotate_timer);
   playhead.style.width = "0px";
   bufferhead.style.width = "0px";
   timer.innerHTML = "0:00";
   music.innerHTML = "";
-  arm.style.transform = "rotate(-45deg)";
-  armrot = -45;
   if (currentSong + 1 == playlist.length) {
     currentSong = 0;
     music.innerHTML =
@@ -271,14 +275,14 @@ function nextFunc() {
   }
   artist.innerHTML = playlist[currentSong]["artist"];
   artist.title = playlist[currentSong]["artist"];
-  artwork.setAttribute(
-    "style",
-    "transform: rotate(" +
-      rot +
-      "deg); background:url(https://i.imgur.com/3idGgyU.png), url('" +
-      playlist[currentSong]["artwork"] +
-      "') center no-repeat;"
-  );
+  // artwork.setAttribute(
+  //   "style",
+  //   "transform: rotate(" +
+  //     rot +
+  //     "deg); background:url(https://i.imgur.com/3idGgyU.png), url('" +
+  //     playlist[currentSong]["artwork"] +
+  //     "') center no-repeat;"
+  // );
   music.load();
   duration = music.duration;
   musicDuration.innerHTML = formatSecondsAsTime(music.duration.toString());
@@ -286,16 +290,16 @@ function nextFunc() {
 }
 
 function previousFunc() {
-  arm.setAttribute("style", "transition: transform 800ms;");
-  arm.style.transform = "rotate(-45deg)";
+  // arm.setAttribute("style", "transition: transform 800ms;");
+  // arm.style.transform = "rotate(-45deg)";
+  // arm.style.transform = "rotate(-45deg)";
+  // armrot = -45;
   clearTimeout(rotate_timer);
   clearTimeout(arm_rotate_timer);
   playhead.style.width = "0px";
   bufferhead.style.width = "0px";
   timer.innerHTML = "0:00";
   music.innerHTML = "";
-  arm.style.transform = "rotate(-45deg)";
-  armrot = -45;
   if (currentSong - 1 == -1) {
     currentSong = playlist.length - 1;
     music.innerHTML =
@@ -313,14 +317,14 @@ function previousFunc() {
   }
   artist.innerHTML = playlist[currentSong]["artist"];
   artist.title = playlist[currentSong]["artist"];
-  artwork.setAttribute(
-    "style",
-    "transform: rotate(" +
-      rot +
-      "deg); background:url(https://i.imgur.com/3idGgyU.png), url('" +
-      playlist[currentSong]["artwork"] +
-      "') center no-repeat;"
-  );
+  // artwork.setAttribute(
+  //   "style",
+  //   "transform: rotate(" +
+  //     rot +
+  //     "deg); background:url(https://i.imgur.com/3idGgyU.png), url('" +
+  //     playlist[currentSong]["artwork"] +
+  //     "') center no-repeat;"
+  // );
   music.load();
   duration = music.duration;
   musicDuration.innerHTML = formatSecondsAsTime(music.duration.toString());

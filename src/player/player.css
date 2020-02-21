@@ -153,12 +153,6 @@
   margin-right: 4px;
 }
 
-.arm,
-.artwork,
-#album {
-  display: none;
-}
-
 @media (max-width: 690px) {
   .button-items {
     position: relative;
