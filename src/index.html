@@ -42,7 +42,7 @@
       </div>
     </section>
 
-    <div class="player">
+    <div class="player player_standard" id="player">
       <ul>
         <li class="info">
           <div class="button-items">
@@ -97,12 +97,19 @@
                 <p id="music_duration">0:00</p>
               </div>
             </div>
-            <div class="slider">
-              <i class="fas fa-volume-up"></i>
-              <div class="volume_range_box">
-                <div class="volume"></div>
-                <input type="range" id="volume" min="0" max="1" step="0.01" value="1" />
+            <div class="controls_volume">
+              <div class="slider">
+                <i class="fas fa-volume-up"></i>
+                <div class="volume_range_container">
+                  <div class="volume_range_box">
+                    <div class="volume"></div>
+                    <input type="range" id="volume" min="0" max="1" step="0.01" value="1" />
+                  </div>
+                </div>
               </div>
+              <button class="fullplayer_btn">
+                <i class="fas fa-expand-arrows-alt"></i>
+              </button>
             </div>
           </div>
         </li>

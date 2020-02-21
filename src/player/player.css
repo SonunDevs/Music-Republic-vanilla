@@ -1,4 +1,4 @@
-.player {
+.player_standard {
   width: 100%;
   background-color: #043353;
   color: white;
@@ -147,10 +147,31 @@
 
 .slider {
   display: flex;
+  position: relative;
 }
 
 .slider i {
   margin-right: 4px;
+}
+
+.fullplayer_btn {
+  font-size: 1.2em;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  color: white;
+  margin-left: 10px;
+}
+
+.controls_volume {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 690px) {
