@@ -1,34 +1,21 @@
-let volumeContainer = document.querySelector(".volume_range_container");
-let volumeIcon = document.querySelector(".slider i.fa-volume-up");
-let volumeHoverState = false;
+let fullPlayerBtn = document.querySelector(".fullplayer_btn");
+let minimizeBtn = document.querySelector(".minimize_btn");
+let player = document.querySelector("#player");
 
-volumeIcon.addEventListener("mouseenter", () => {
-  activation(true);
+fullPlayerBtn.addEventListener("click", () => {
+  playerChanging("full");
 });
 
-volumeContainer.addEventListener("mouseenter", () => {
-  volumeHoverState = true;
-  activation(true);
+minimizeBtn.addEventListener("click", () => {
+  playerChanging("standard");
 });
 
-volumeIcon.addEventListener("mouseleave", () => {
-  let timeOut = setTimeout(() => {
-    clearTimeout(timeOut);
-    if (volumeHoverState == false) {
-      activation(false);
-    }
-  }, 1000);
-});
-
-volumeContainer.addEventListener("mouseleave", () => {
-  activation(false);
-  volumeHoverState = false;
-});
-
-function activation(status) {
-  if (status) {
-    volumeContainer.classList.add("active");
-  } else {
-    volumeContainer.classList.remove("active");
+function playerChanging(PlayerState) {
+  if (PlayerState == "full") {
+    player.classList.remove("player_standard");
+    player.classList.add("player_full");
+  } else if (PlayerState == "standard") {
+    player.classList.remove("player_full");
+    player.classList.add("player_standard");
   }
 }

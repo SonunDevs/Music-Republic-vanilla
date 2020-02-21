@@ -42,10 +42,25 @@
       </div>
     </section>
 
-    <div class="player player_standard" id="player">
+    <div class="player player_full" id="player">
       <ul>
         <li class="info">
-          <div class="button-items">
+          <div class="player_box">
+            <div class="player_full__box">
+              <header>
+                <h2>Music</h2>
+              </header>
+              <div class="player_full__content">
+                <div class="song_artwork">
+                  <img src="" alt="">
+                </div>
+                <h3 class="song">loading...</h3>
+                <h4 class="artist"></h4>
+              </div>
+              <button class="minimize_btn">
+                <span></span>
+              </button>
+            </div>
             <audio id="music" preload="auto">
             </audio>
             <div class="controls">
@@ -83,9 +98,9 @@
             <div class="music_box">
               <div class="music_info">
                 <h2>
-                  <span id="artist">loading artist...</span>
+                  <span class="artist">loading artist...</span>
                   -
-                  <span id="song">loading song...</span>
+                  <span class="song">loading song...</span>
                 </h2>
               </div>
               <div class="slider_wrapper">
