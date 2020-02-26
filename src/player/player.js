@@ -6,21 +6,18 @@ import "../math/math";
 ======================================*/
 let playState = false;
 let volume_value = 1;
-var rot = 0;
 var duration;
 var playPercent;
 var rotate_timer;
-var armrot = -45;
 var bufferPercent;
 var currentSong = 0;
 var arm_rotate_timer;
-var arm = document.getElementById("arm");
 var next = document.getElementById("next");
-var song = document.getElementById("song");
 var timer = document.getElementById("timer");
 var music = document.getElementById("music");
 var album = document.getElementById("album");
-var artist = document.getElementById("artist");
+let artists = document.querySelectorAll(".artist");
+let songs = document.querySelectorAll(".song");
 var volume = document.getElementById("volume");
 var playButton = document.getElementById("play");
 var timeline = document.getElementById("slider");
@@ -28,18 +25,53 @@ var playhead = document.getElementById("elapsed");
 var previous = document.getElementById("previous");
 var pauseButton = document.getElementById("pause");
 var bufferhead = document.getElementById("buffered");
-var artwork = document.getElementsByClassName("artwork")[0];
+let artworks = document.querySelectorAll(".song_artwork");
 var timelineWidth = timeline.offsetWidth - playhead.offsetWidth;
 var visablevolume = document.getElementsByClassName("volume")[0];
 let musicDuration = document.getElementById("music_duration");
+let volumeContainer = document.querySelector(".volume_range_container");
+let volumeIcon = document.querySelector(".slider i.fa-volume-up");
+let volumeHoverState = false;
 
 music.addEventListener("ended", _next, false);
 music.addEventListener("timeupdate", timeUpdate, false);
 music.addEventListener("progress", bufferUpdate, false);
+
 load();
 
 /* Functions
 ======================================*/
+
+volumeIcon.addEventListener("mouseenter", () => {
+  activationVolumeSlider(true);
+});
+
+volumeContainer.addEventListener("mouseenter", () => {
+  volumeHoverState = true;
+  activationVolumeSlider(true);
+});
+
+volumeIcon.addEventListener("mouseleave", () => {
+  let timeOut = setTimeout(() => {
+    clearTimeout(timeOut);
+    if (volumeHoverState == false) {
+      activationVolumeSlider(false);
+    }
+  }, 1000);
+});
+
+volumeContainer.addEventListener("mouseleave", () => {
+  activationVolumeSlider(false);
+  volumeHoverState = false;
+});
+
+function activationVolumeSlider(status) {
+  if (status) {
+    volumeContainer.classList.add("active");
+  } else {
+    volumeContainer.classList.remove("active");
+  }
+}
 
 // Функция отвечающий за событии нажатие клавиатуры
 document.documentElement.addEventListener("keydown", event => {
@@ -83,51 +115,48 @@ function changeVolume(volumeValue) {
 
 function load() {
   pauseButton.style.visibility = "hidden";
-  song.innerHTML = playlist[currentSong]["song"];
-  song.title = playlist[currentSong]["song"];
+  songs.forEach(song => (song.innerHTML = playlist[currentSong]["song"]));
+  songs.forEach(song => (song.title = playlist[currentSong]["song"]));
   if (album) {
     album.innerHTML = playlist[currentSong]["album"];
     album.title = playlist[currentSong]["album"];
   }
-  artist.innerHTML = playlist[currentSong]["artist"];
-  artist.title = playlist[currentSong]["artist"];
-  artwork.setAttribute(
-    "style",
-    "background:url(https://i.imgur.com/3idGgyU.png), url('" +
-      playlist[currentSong]["artwork"] +
-      "') center no-repeat;"
+  artists.forEach(
+    artist => (artist.innerHTML = playlist[currentSong]["artist"])
+  );
+  artists.forEach(artist => (artist.title = playlist[currentSong]["artist"]));
+  artworks.forEach(art =>
+    art.setAttribute(
+      "style",
+      "background-image: url(" + playlist[currentSong]["artwork"]
+    )
   );
   music.innerHTML =
     '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
   music.load();
 }
 function reset() {
-  rotate_reset = setInterval(function() {
-    Rotate();
-    if (rot == 0) {
-      clearTimeout(rotate_reset);
-    }
-  }, 1);
   fireEvent(pauseButton, "click");
-  armrot = -45;
   playhead.style.width = "0px";
   bufferhead.style.width = "0px";
   timer.innerHTML = "0:00";
   music.innerHTML = "";
   currentSong = 0; // set to first song, to stay on last song: currentSong = playlist.length - 1;
-  song.innerHTML = playlist[currentSong]["song"];
-  song.title = playlist[currentSong]["song"];
+  songs.forEach(song => (song.innerHTML = playlist[currentSong]["song"]));
+  songs.forEach(song => (song.title = playlist[currentSong]["song"]));
   if (album) {
     album.innerHTML = playlist[currentSong]["album"];
     album.title = playlist[currentSong]["album"];
   }
-  artist.innerHTML = playlist[currentSong]["artist"];
-  artist.title = playlist[currentSong]["artist"];
-  artwork.setAttribute(
-    "style",
-    "background:url(https://i.imgur.com/3idGgyU.png), url('" +
-      playlist[currentSong]["artwork"] +
-      "') center no-repeat;"
+  artists.forEach(
+    artist => (artist.innerHTML = playlist[currentSong]["artist"])
+  );
+  artists.forEach(artist => (artist.title = playlist[currentSong]["artist"]));
+  artworks.forEach(art =>
+    art.setAttribute(
+      "style",
+      "background-image: url(" + playlist[currentSong]["artwork"]
+    )
   );
   music.innerHTML =
     '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
@@ -150,27 +179,10 @@ function timeUpdate() {
   musicDuration.innerHTML = formatSecondsAsTime(music.duration.toString());
   // console.log(music.duration); длина песни
 }
+
 function bufferUpdate() {
   bufferPercent = timelineWidth * (music.buffered.end(0) / duration);
   bufferhead.style.width = bufferPercent + "px";
-}
-function Rotate() {
-  if (rot == 361) {
-    artwork.style.transform = "rotate(0deg)";
-    rot = 0;
-  } else {
-    artwork.style.transform = "rotate(" + rot + "deg)";
-    rot++;
-  }
-}
-function RotateArm() {
-  if (armrot > -12) {
-    arm.style.transform = "rotate(-38deg)";
-    armrot = -45;
-  } else {
-    arm.style.transform = "rotate(" + armrot + "deg)";
-    armrot = armrot + 26 / duration;
-  }
 }
 function fireEvent(el, etype) {
   if (el.fireEvent) {
@@ -195,43 +207,21 @@ playButton.onclick = function() {
 pauseButton.onclick = function() {
   music.pause();
 };
+
 music.addEventListener(
   "play",
   function() {
     playButton.style.visibility = "hidden";
     pause.style.visibility = "visible";
-    rotate_timer = setInterval(function() {
-      if (!music.paused && !music.ended && 0 < music.currentTime) {
-        Rotate();
-      }
-    }, 10);
-    if (armrot != -45) {
-      arm.setAttribute("style", "transition: transform 800ms;");
-      arm.style.transform = "rotate(" + armrot + "deg)";
-    }
-    arm_rotate_timer = setInterval(function() {
-      if (!music.paused && !music.ended && 0 < music.currentTime) {
-        if (armrot == -45) {
-          arm.setAttribute("style", "transition: transform 800ms;");
-          arm.style.transform = "rotate(-38deg)";
-          armrot = -38;
-        }
-        if (arm.style.transition != "") {
-          setTimeout(function() {
-            arm.style.transition = "";
-          }, 1000);
-        }
-        RotateArm();
-      }
-    }, 1000);
   },
   false
 );
+
 music.addEventListener(
   "pause",
   function() {
-    arm.setAttribute("style", "transition: transform 800ms;");
-    arm.style.transform = "rotate(-45deg)";
+    // arm.setAttribute("style", "transition: transform 800ms;");
+    // arm.style.transform = "rotate(-45deg)";
     playButton.style.visibility = "visible";
     pause.style.visibility = "hidden";
     clearTimeout(rotate_timer);
@@ -244,16 +234,16 @@ next.addEventListener("click", nextFunc);
 previous.addEventListener("click", previousFunc);
 
 function nextFunc() {
-  arm.setAttribute("style", "transition: transform 800ms;");
-  arm.style.transform = "rotate(-45deg)";
+  // arm.setAttribute("style", "transition: transform 800ms;");
+  // arm.style.transform = "rotate(-45deg)";
+  // arm.style.transform = "rotate(-45deg)";
+  // armrot = -45;
   clearTimeout(rotate_timer);
   clearTimeout(arm_rotate_timer);
   playhead.style.width = "0px";
   bufferhead.style.width = "0px";
   timer.innerHTML = "0:00";
   music.innerHTML = "";
-  arm.style.transform = "rotate(-45deg)";
-  armrot = -45;
   if (currentSong + 1 == playlist.length) {
     currentSong = 0;
     music.innerHTML =
@@ -263,21 +253,21 @@ function nextFunc() {
     music.innerHTML =
       '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
   }
-  song.innerHTML = playlist[currentSong]["song"];
-  song.title = playlist[currentSong]["song"];
+  songs.forEach(song => (song.innerHTML = playlist[currentSong]["song"]));
+  songs.forEach(song => (song.title = playlist[currentSong]["song"]));
   if (album) {
     album.innerHTML = playlist[currentSong]["album"];
     album.title = playlist[currentSong]["album"];
   }
-  artist.innerHTML = playlist[currentSong]["artist"];
-  artist.title = playlist[currentSong]["artist"];
-  artwork.setAttribute(
-    "style",
-    "transform: rotate(" +
-      rot +
-      "deg); background:url(https://i.imgur.com/3idGgyU.png), url('" +
-      playlist[currentSong]["artwork"] +
-      "') center no-repeat;"
+  artists.forEach(
+    artist => (artist.innerHTML = playlist[currentSong]["artist"])
+  );
+  artists.forEach(artist => (artist.title = playlist[currentSong]["artist"]));
+  artworks.forEach(art =>
+    art.setAttribute(
+      "style",
+      "background-image: url(" + playlist[currentSong]["artwork"]
+    )
   );
   music.load();
   duration = music.duration;
@@ -286,16 +276,16 @@ function nextFunc() {
 }
 
 function previousFunc() {
-  arm.setAttribute("style", "transition: transform 800ms;");
-  arm.style.transform = "rotate(-45deg)";
+  // arm.setAttribute("style", "transition: transform 800ms;");
+  // arm.style.transform = "rotate(-45deg)";
+  // arm.style.transform = "rotate(-45deg)";
+  // armrot = -45;
   clearTimeout(rotate_timer);
   clearTimeout(arm_rotate_timer);
   playhead.style.width = "0px";
   bufferhead.style.width = "0px";
   timer.innerHTML = "0:00";
   music.innerHTML = "";
-  arm.style.transform = "rotate(-45deg)";
-  armrot = -45;
   if (currentSong - 1 == -1) {
     currentSong = playlist.length - 1;
     music.innerHTML =
@@ -305,21 +295,21 @@ function previousFunc() {
     music.innerHTML =
       '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
   }
-  song.innerHTML = playlist[currentSong]["song"];
-  song.title = playlist[currentSong]["song"];
+  songs.forEach(song => (song.innerHTML = playlist[currentSong]["song"]));
+  songs.forEach(song => (song.title = playlist[currentSong]["song"]));
   if (album) {
     album.innerHTML = playlist[currentSong]["album"];
     album.title = playlist[currentSong]["album"];
   }
-  artist.innerHTML = playlist[currentSong]["artist"];
-  artist.title = playlist[currentSong]["artist"];
-  artwork.setAttribute(
-    "style",
-    "transform: rotate(" +
-      rot +
-      "deg); background:url(https://i.imgur.com/3idGgyU.png), url('" +
-      playlist[currentSong]["artwork"] +
-      "') center no-repeat;"
+  artists.forEach(
+    artist => (artist.innerHTML = playlist[currentSong]["artist"])
+  );
+  artists.forEach(artist => (artist.title = playlist[currentSong]["artist"]));
+  artworks.forEach(art =>
+    art.setAttribute(
+      "style",
+      "background-image: url(" + playlist[currentSong]["artwork"]
+    )
   );
   music.load();
   duration = music.duration;
@@ -337,14 +327,16 @@ function setTrack(index) {
   music.innerHTML =
     '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
 
-  song.innerHTML = playlist[currentSong]["song"];
-  song.title = playlist[currentSong]["song"];
+  songs.forEach(song => (song.innerHTML = playlist[currentSong]["song"]));
+  songs.forEach(song => (song.title = playlist[currentSong]["song"]));
   if (album) {
     album.innerHTML = playlist[currentSong]["album"];
     album.title = playlist[currentSong]["album"];
   }
-  artist.innerHTML = playlist[currentSong]["artist"];
-  artist.title = playlist[currentSong]["artist"];
+  artists.forEach(
+    artist => (artist.innerHTML = playlist[currentSong]["artist"])
+  );
+  artists.forEach(artist => (artist.title = playlist[currentSong]["artist"]));
 
   music.load();
   duration = music.duration;

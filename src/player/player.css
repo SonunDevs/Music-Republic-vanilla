@@ -2,14 +2,121 @@
   width: 100%;
   background-color: #043353;
   color: white;
+}
+
+.player_standard {
   position: fixed;
   bottom: 0;
   left: 0;
 }
 
+.player_standard .player_full_box,
+.player_full .fullplayer_btn {
+  display: none;
+}
+
+.player_standard .player_controls_wrapper {
+  display: block;
+}
+
+.player_standard .player_controls_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 10px 20px;
+}
+
+.player_full li {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, .6);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9;
+}
+
+.player_full .player_box {
+  width: 100%;
+  max-width: 500px;
+  background-color: #043353;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+  border-radius: 6px;
+}
+
+.player_full .minimize_btn {
+  background-color: transparent;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+}
+
+.player_full .minimize_btn span {
+  display: inline-block;
+  width: 20px;
+  height: 3px;
+  background-color: #fff;
+}
+
+.player_full .minimize_btn:hover span {
+  background-color: #18A4E0;
+}
+
+.player_full header.player_header {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
 .player ul {
   margin: 0;
   padding: 0;
+}
+
+.volume_range_container {
+  display: none;
+  position: absolute;
+  right: 0;
+  bottom: 20px;
+  padding: 2px 10px 4px;
+  border-radius: 40px;
+  background-color: #faf8f0;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, .6);
+}
+
+.volume_range_container.active {
+  display: block;
+}
+
+.volume_range_box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.volume {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  height: 5px;
+  width: 69px;
+  border-radius: 5px;
+  background-color: #18A4E0;
 }
 
 .music_info {
@@ -22,14 +129,6 @@
   width: 100%;
   text-align: center;
   font-weight: normal;
-}
-
-.button-items {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-sizing: border-box;
-  padding: 10px 20px;
 }
 
 .slider_wrapper {
@@ -147,29 +246,93 @@
 
 .slider {
   display: flex;
+  position: relative;
 }
 
 .slider i {
   margin-right: 4px;
 }
 
-.arm,
-.artwork,
-#album {
-  display: none;
+.fullplayer_btn {
+  font-size: 1.2em;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  color: white;
+  margin-left: 10px;
+}
+
+.controls_volume {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player_full .song_artwork {
+  width: 160px;
+  height: 160px;
+  border-radius: 100%;
+  background-size: contain;
+  margin-top: 40px;
+}
+
+.player_full_content header.song_header {
+  margin: 10px 0;
+}
+
+.player_full_content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.player_full_content h3 {
+  font-size: 28px;
+}
+
+.player_full_content h4 {
+  color: #B8B6AF;
+}
+
+.player_full_content h3,
+.player_full_content h4 {
+  margin: 0;
+}
+
+.player_full .player_controls_wrapper {
+  display: flex;
+  flex-flow: column-reverse;
+  align-items: center;
+  position: relative;
+  padding: 20px;
+}
+
+.player_full .controls_volume {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+}
+
+.player_full .music_box {
+  margin-bottom: 20px;
 }
 
 @media (max-width: 690px) {
-  .button-items {
+  .player_standard .button-items {
     position: relative;
   }
 
-  .music_box {
+  .player_standard .music_box {
     display: flex;
     flex-direction: column-reverse;
   }
 
-  #slider {
+  .player_standard #slider {
     position: absolute;
     left: 0;
     top: 0;
@@ -177,7 +340,7 @@
     border-radius: 0;
   }
 
-  .slider_wrapper {
+  .player_standard .slider_wrapper {
     justify-content: center;
   }
 }

@@ -11,6 +11,7 @@ nav {
   box-sizing: border-box;
   padding: 0 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  z-index: 8;
 }
 
 .nav_logo {
