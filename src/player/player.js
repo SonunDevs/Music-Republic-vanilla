@@ -1,9 +1,7 @@
-import { playlist } from "./playlistdata";
-import "../playlist/playlist";
 import "../math/math";
+import "../getdata/getdata";
 
-/* General Load / Variables
-======================================*/
+/* General Load / Variables ======================================*/
 let playState = false;
 let volume_value = 1;
 var duration;
@@ -114,26 +112,26 @@ function changeVolume(volumeValue) {
 }
 
 function load() {
-  pauseButton.style.visibility = "hidden";
-  songs.forEach(song => (song.innerHTML = playlist[currentSong]["song"]));
-  songs.forEach(song => (song.title = playlist[currentSong]["song"]));
-  if (album) {
-    album.innerHTML = playlist[currentSong]["album"];
-    album.title = playlist[currentSong]["album"];
-  }
-  artists.forEach(
-    artist => (artist.innerHTML = playlist[currentSong]["artist"])
-  );
-  artists.forEach(artist => (artist.title = playlist[currentSong]["artist"]));
-  artworks.forEach(art =>
-    art.setAttribute(
-      "style",
-      "background-image: url(" + playlist[currentSong]["artwork"]
-    )
-  );
-  music.innerHTML =
-    '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
-  music.load();
+  // pauseButton.style.visibility = "hidden";
+  // songs.forEach(song => (song.innerHTML = playlist[currentSong]["song"]));
+  // songs.forEach(song => (song.title = playlist[currentSong]["song"]));
+  // if (album) {
+  //   album.innerHTML = playlist[currentSong]["album"];
+  //   album.title = playlist[currentSong]["album"];
+  // }
+  // artists.forEach(
+  //   artist => (artist.innerHTML = playlist[currentSong]["artist"])
+  // );
+  // artists.forEach(artist => (artist.title = playlist[currentSong]["artist"]));
+  // artworks.forEach(art =>
+  //   art.setAttribute(
+  //     "style",
+  //     "background-image: url(" + playlist[currentSong]["artwork"]
+  //   )
+  // );
+  // music.innerHTML =
+  //   '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
+  // music.load();
 }
 function reset() {
   fireEvent(pauseButton, "click");
@@ -317,31 +315,49 @@ function previousFunc() {
   music.play();
 }
 
-function setTrack(index) {
-  playhead.style.width = "0px";
-  bufferhead.style.width = "0px";
-  timer.innerHTML = "0:00";
-  music.innerHTML = "";
-  // "currentSong" - индекс песни
-  currentSong = index;
-  music.innerHTML =
-    '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
-
-  songs.forEach(song => (song.innerHTML = playlist[currentSong]["song"]));
-  songs.forEach(song => (song.title = playlist[currentSong]["song"]));
-  if (album) {
-    album.innerHTML = playlist[currentSong]["album"];
-    album.title = playlist[currentSong]["album"];
-  }
-  artists.forEach(
-    artist => (artist.innerHTML = playlist[currentSong]["artist"])
-  );
-  artists.forEach(artist => (artist.title = playlist[currentSong]["artist"]));
-
-  music.load();
-  duration = music.duration;
-  musicDuration.innerHTML = formatSecondsAsTime(music.duration.toString());
-  music.play();
+function setTrack(index, mp3) {
+  // playhead.style.width = "0px";
+  // bufferhead.style.width = "0px";
+  // timer.innerHTML = "0:00";
+  // music.innerHTML = "";
+  // // "currentSong" - индекс песни
+  // currentSong = index;
+  // music.innerHTML =
+  //   '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
+  // songs.forEach(song => (song.innerHTML = playlist[currentSong]["song"]));
+  // songs.forEach(song => (song.title = playlist[currentSong]["song"]));
+  // if (album) {
+  //   album.innerHTML = playlist[currentSong]["album"];
+  //   album.title = playlist[currentSong]["album"];
+  // }
+  // artists.forEach(
+  //   artist => (artist.innerHTML = playlist[currentSong]["artist"])
+  // );
+  // artists.forEach(artist => (artist.title = playlist[currentSong]["artist"]));
+  // music.load();
+  // duration = music.duration;
+  // musicDuration.innerHTML = formatSecondsAsTime(music.duration.toString());
+  // music.play();
+  // playhead.style.width = "0px";
+  // bufferhead.style.width = "0px";npm
+  // timer.innerHTML = "0:00";
+  // music.innerHTML = "";
+  // music.innerHTML =
+  //   '<source src="' + mp3 + '" type="audio/mp3">';
+  // songs.forEach(song => (song.innerHTML = playlist[currentSong]["song"]));
+  // songs.forEach(song => (song.title = playlist[currentSong]["song"]));
+  // if (album) {
+  //   album.innerHTML = playlist[currentSong]["album"];
+  //   album.title = playlist[currentSong]["album"];
+  // }
+  // artists.forEach(
+  //   artist => (artist.innerHTML = playlist[currentSong]["artist"])
+  // );
+  // artists.forEach(artist => (artist.title = playlist[currentSong]["artist"]));
+  // music.load();
+  // duration = music.duration;
+  // musicDuration.innerHTML = formatSecondsAsTime(music.duration.toString());
+  // music.play();
 }
 
 volume.oninput = function() {
@@ -361,14 +377,14 @@ window.addEventListener("click", event => {
     for (let i = 0; i < playlist.length; i++) {
       const element = playlist[i];
       if (event.target.getAttribute("data-mp3") == element.mp3) {
-        setTrack(i);
+        setTrack(null, event.target.getAttribute("data-mp3"));
       }
     }
   } else if (event.target.className == "far fa-play-circle") {
     for (let i = 0; i < playlist.length; i++) {
       const element = playlist[i];
       if (event.target.parentNode.getAttribute("data-mp3") == element.mp3) {
-        setTrack(i);
+        setTrack(null, event.target.getAttribute("data-mp3"));
       }
     }
   }
