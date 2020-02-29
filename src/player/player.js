@@ -1,5 +1,6 @@
 import "../math/math";
 import "../getdata/getdata";
+import { playlistData } from "../playlistData/playlistdata";
 
 /* General Load / Variables ======================================*/
 let playState = false;
@@ -34,8 +35,6 @@ let volumeHoverState = false;
 music.addEventListener("ended", _next, false);
 music.addEventListener("timeupdate", timeUpdate, false);
 music.addEventListener("progress", bufferUpdate, false);
-
-load();
 
 /* Functions
 ======================================*/
@@ -111,28 +110,47 @@ function changeVolume(volumeValue) {
   visablevolume.style.width = (80 - 11) * volumeValue + "px";
 }
 
-function load() {
-  // pauseButton.style.visibility = "hidden";
-  // songs.forEach(song => (song.innerHTML = playlist[currentSong]["song"]));
-  // songs.forEach(song => (song.title = playlist[currentSong]["song"]));
-  // if (album) {
-  //   album.innerHTML = playlist[currentSong]["album"];
-  //   album.title = playlist[currentSong]["album"];
-  // }
-  // artists.forEach(
-  //   artist => (artist.innerHTML = playlist[currentSong]["artist"])
-  // );
-  // artists.forEach(artist => (artist.title = playlist[currentSong]["artist"]));
-  // artworks.forEach(art =>
-  //   art.setAttribute(
-  //     "style",
-  //     "background-image: url(" + playlist[currentSong]["artwork"]
-  //   )
-  // );
-  // music.innerHTML =
-  //   '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
-  // music.load();
+export function load() {
+  pauseButton.style.visibility = "hidden";
+
+  setTrackData();
 }
+
+function setTrackData() {
+  playhead.style.width = "0px";
+  bufferhead.style.width = "0px";
+  timer.innerHTML = "0:00";
+  music.innerHTML = "";
+
+  songs.forEach(song => (song.innerHTML = playlistData[currentSong]["title"]));
+  songs.forEach(song => (song.title = playlistData[currentSong]["title"]));
+
+  if (album) {
+    album.innerHTML = playlistData[currentSong]["album"]["title"];
+    album.title = playlistData[currentSong]["album"]["title"];
+  }
+
+  artists.forEach(
+    artist => (artist.innerHTML = playlistData[currentSong]["artist"]["name"])
+  );
+  artists.forEach(
+    artist => (artist.title = playlistData[currentSong]["artist"]["name"])
+  );
+
+  artworks.forEach(art =>
+    art.setAttribute(
+      "style",
+      "background-image: url(" + playlistData[currentSong]["album"]["cover"]
+    )
+  );
+
+  music.innerHTML =
+    '<source src="' +
+    playlistData[currentSong]["preview"] +
+    '" type="audio/mp3">';
+  music.load();
+}
+
 function reset() {
   fireEvent(pauseButton, "click");
   playhead.style.width = "0px";
@@ -160,6 +178,7 @@ function reset() {
     '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
   music.load();
 }
+
 function formatSecondsAsTime(secs, format) {
   var hr = Math.floor(secs / 3600);
   var min = Math.floor((secs - hr * 3600) / 60);
@@ -169,6 +188,7 @@ function formatSecondsAsTime(secs, format) {
   }
   return min + ":" + sec;
 }
+
 function timeUpdate() {
   bufferUpdate();
   playPercent = timelineWidth * (music.currentTime / duration);
@@ -182,6 +202,7 @@ function bufferUpdate() {
   bufferPercent = timelineWidth * (music.buffered.end(0) / duration);
   bufferhead.style.width = bufferPercent + "px";
 }
+
 function fireEvent(el, etype) {
   if (el.fireEvent) {
     el.fireEvent("on" + etype);
@@ -191,6 +212,7 @@ function fireEvent(el, etype) {
     el.dispatchEvent(evObj);
   }
 }
+
 function _next() {
   if (currentSong == playlist.length - 1) {
     reset();
@@ -236,38 +258,25 @@ function nextFunc() {
   // arm.style.transform = "rotate(-45deg)";
   // arm.style.transform = "rotate(-45deg)";
   // armrot = -45;
-  clearTimeout(rotate_timer);
-  clearTimeout(arm_rotate_timer);
-  playhead.style.width = "0px";
-  bufferhead.style.width = "0px";
-  timer.innerHTML = "0:00";
-  music.innerHTML = "";
-  if (currentSong + 1 == playlist.length) {
+  // clearTimeout(rotate_timer);
+  // clearTimeout(arm_rotate_timer);
+
+  if (currentSong + 1 == playlistData.length) {
     currentSong = 0;
     music.innerHTML =
-      '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
+      '<source src="' +
+      playlistData[currentSong]["preview"] +
+      '" type="audio/mp3">';
   } else {
     currentSong++;
     music.innerHTML =
-      '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
+      '<source src="' +
+      playlistData[currentSong]["preview"] +
+      '" type="audio/mp3">';
   }
-  songs.forEach(song => (song.innerHTML = playlist[currentSong]["song"]));
-  songs.forEach(song => (song.title = playlist[currentSong]["song"]));
-  if (album) {
-    album.innerHTML = playlist[currentSong]["album"];
-    album.title = playlist[currentSong]["album"];
-  }
-  artists.forEach(
-    artist => (artist.innerHTML = playlist[currentSong]["artist"])
-  );
-  artists.forEach(artist => (artist.title = playlist[currentSong]["artist"]));
-  artworks.forEach(art =>
-    art.setAttribute(
-      "style",
-      "background-image: url(" + playlist[currentSong]["artwork"]
-    )
-  );
-  music.load();
+
+  setTrackData();
+
   duration = music.duration;
   musicDuration.innerHTML = formatSecondsAsTime(music.duration.toString());
   music.play();
@@ -278,86 +287,38 @@ function previousFunc() {
   // arm.style.transform = "rotate(-45deg)";
   // arm.style.transform = "rotate(-45deg)";
   // armrot = -45;
-  clearTimeout(rotate_timer);
-  clearTimeout(arm_rotate_timer);
-  playhead.style.width = "0px";
-  bufferhead.style.width = "0px";
-  timer.innerHTML = "0:00";
-  music.innerHTML = "";
+  // clearTimeout(rotate_timer);
+  // clearTimeout(arm_rotate_timer);
+
   if (currentSong - 1 == -1) {
-    currentSong = playlist.length - 1;
+    currentSong = playlistData.length - 1;
     music.innerHTML =
-      '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
+      '<source src="' +
+      playlistData[currentSong]["preview"] +
+      '" type="audio/mp3">';
   } else {
     currentSong--;
     music.innerHTML =
-      '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
+      '<source src="' +
+      playlistData[currentSong]["preview"] +
+      '" type="audio/mp3">';
   }
-  songs.forEach(song => (song.innerHTML = playlist[currentSong]["song"]));
-  songs.forEach(song => (song.title = playlist[currentSong]["song"]));
-  if (album) {
-    album.innerHTML = playlist[currentSong]["album"];
-    album.title = playlist[currentSong]["album"];
-  }
-  artists.forEach(
-    artist => (artist.innerHTML = playlist[currentSong]["artist"])
-  );
-  artists.forEach(artist => (artist.title = playlist[currentSong]["artist"]));
-  artworks.forEach(art =>
-    art.setAttribute(
-      "style",
-      "background-image: url(" + playlist[currentSong]["artwork"]
-    )
-  );
-  music.load();
+
+  setTrackData();
+
   duration = music.duration;
   musicDuration.innerHTML = formatSecondsAsTime(music.duration.toString());
   music.play();
 }
 
-function setTrack(index, mp3) {
-  // playhead.style.width = "0px";
-  // bufferhead.style.width = "0px";
-  // timer.innerHTML = "0:00";
-  // music.innerHTML = "";
-  // // "currentSong" - индекс песни
-  // currentSong = index;
-  // music.innerHTML =
-  //   '<source src="' + playlist[currentSong]["mp3"] + '" type="audio/mp3">';
-  // songs.forEach(song => (song.innerHTML = playlist[currentSong]["song"]));
-  // songs.forEach(song => (song.title = playlist[currentSong]["song"]));
-  // if (album) {
-  //   album.innerHTML = playlist[currentSong]["album"];
-  //   album.title = playlist[currentSong]["album"];
-  // }
-  // artists.forEach(
-  //   artist => (artist.innerHTML = playlist[currentSong]["artist"])
-  // );
-  // artists.forEach(artist => (artist.title = playlist[currentSong]["artist"]));
-  // music.load();
-  // duration = music.duration;
-  // musicDuration.innerHTML = formatSecondsAsTime(music.duration.toString());
-  // music.play();
-  // playhead.style.width = "0px";
-  // bufferhead.style.width = "0px";npm
-  // timer.innerHTML = "0:00";
-  // music.innerHTML = "";
-  // music.innerHTML =
-  //   '<source src="' + mp3 + '" type="audio/mp3">';
-  // songs.forEach(song => (song.innerHTML = playlist[currentSong]["song"]));
-  // songs.forEach(song => (song.title = playlist[currentSong]["song"]));
-  // if (album) {
-  //   album.innerHTML = playlist[currentSong]["album"];
-  //   album.title = playlist[currentSong]["album"];
-  // }
-  // artists.forEach(
-  //   artist => (artist.innerHTML = playlist[currentSong]["artist"])
-  // );
-  // artists.forEach(artist => (artist.title = playlist[currentSong]["artist"]));
-  // music.load();
-  // duration = music.duration;
-  // musicDuration.innerHTML = formatSecondsAsTime(music.duration.toString());
-  // music.play();
+function setTrack(index) {
+  currentSong = index;
+
+  setTrackData();
+
+  duration = music.duration;
+  musicDuration.innerHTML = formatSecondsAsTime(music.duration.toString());
+  music.play();
 }
 
 volume.oninput = function() {
@@ -374,17 +335,17 @@ music.addEventListener(
 
 window.addEventListener("click", event => {
   if (event.target.className == "list_backdrop") {
-    for (let i = 0; i < playlist.length; i++) {
-      const element = playlist[i];
-      if (event.target.getAttribute("data-mp3") == element.mp3) {
-        setTrack(null, event.target.getAttribute("data-mp3"));
+    for (let i = 0; i < playlistData.length; i++) {
+      const element = playlistData[i];
+      if (event.target.getAttribute("data-mp3") == element.preview) {
+        setTrack(i);
       }
     }
   } else if (event.target.className == "far fa-play-circle") {
-    for (let i = 0; i < playlist.length; i++) {
-      const element = playlist[i];
-      if (event.target.parentNode.getAttribute("data-mp3") == element.mp3) {
-        setTrack(null, event.target.getAttribute("data-mp3"));
+    for (let i = 0; i < playlistData.length; i++) {
+      const element = playlistData[i];
+      if (event.target.parentNode.getAttribute("data-mp3") == element.preview) {
+        setTrack(i);
       }
     }
   }
