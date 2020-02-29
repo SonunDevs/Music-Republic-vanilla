@@ -10,6 +10,11 @@
   left: 0;
 }
 
+.player_standard,
+.player_full {
+  z-index: 2;
+}
+
 .player_standard .player_full_box,
 .player_full .fullplayer_btn {
   display: none;
