@@ -1,5 +1,4 @@
 import "@babel/polyfill";
-import { createPlaylist } from "../playlist/playlist";
 import { setPlaylistData } from "../playlistData/playlistdata";
 
 export default async function getResponse() {

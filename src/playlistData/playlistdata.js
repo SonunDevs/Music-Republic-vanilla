@@ -1,13 +1,15 @@
 import { createPlaylist } from "../playlist/playlist";
+import { load } from "../player/player";
 export var playlistData;
 
 export function setPlaylistData(data) {
   if (data) {
-    playlistData = data;
+    playlistData = data.data;
   }
 
-  // console.log(playlistData);
+  console.log(playlistData);
   createPlaylist(playlistData);
+  load();
 }
 
 // export var playlist = [
